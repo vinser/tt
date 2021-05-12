@@ -1,0 +1,9 @@
+Log file created at: 2021/04/10 10:55:46
+Running on machine: 21b5d56fce7b
+Binary: Built with gc go1.16.2 for linux/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0410 10:55:46.983712    2802 main.go:15] Starting server at localhost:8080
+I0410 10:55:54.016056    2802 fb.go:15] lang=ru
+E0410 10:55:54.117387    2802 fb.go:19] lang=
+I0410 10:55:57.363657    2802 fb.go:15] lang=ru
+E0410 10:55:57.453737    2802 fb.go:19] lang=

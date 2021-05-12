@@ -1,0 +1,33 @@
+func main() {
+	zipFileName := "test.zip"
+
+	rc, err := zip.OpenReader(zipFileName)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	zipFiles := rc.File
+	for _, zipFile := range zipFiles {
+		offset, _ := zipFile.DataOffset()
+		log.Println("Compresszed:", zipFile.FileHeader.CompressedSize64, "Uncompressed:", zipFile.FileHeader.UncompressedSize64)
+		log.Println(zipFile.FileHeader.Name, "\tDataOffset", offset)
+
+		irc, err := zipFile.Open()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if fileContent, err := ioutil.ReadAll(irc); err == nil {
+			data := string(fileContent)
+			fmt.Print(len(data), "\t", data)
+		} else {
+			log.Fatal(err)
+		}
+		irc.Close()
+		fmt.Println("----------------------")
+	}
+}
+
+https://stackoverflow.com/questions/27044349/go-serve-contents-from-a-zip-file-in-http
+https://gist.github.com/bliaxiong/c91d3ade6428d0549909
+https://forum.golangbridge.org/t/generating-file-for-download-from-server-in-golang/5548/2
